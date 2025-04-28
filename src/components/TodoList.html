@@ -1,0 +1,98 @@
+<div>
+  <h1>TODOリスト</h1>
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    "
+  >
+    <div style="width: 90%; max-width: 400px">
+      <button
+        @click="openModal"
+        style="
+          position: absolute;
+          top: 100px;
+          left: 10px;
+          padding: 10px;
+          font-size: 16px;
+        "
+      >
+        新規作成
+      </button>
+
+      <!-- モーダル -->
+      <div v-if="showModal" class="modal-overlay">
+        <div class="modal-content">
+          <button @click="closeModal" class="modal-close">×</button>
+          <add-todo-form
+            :newTodoTitle="newTodoTitle"
+            :newTodoDescription="newTodoDescription"
+            @update-title="newTodoTitle = $event"
+            @update-description="newTodoDescription = $event"
+            @add-todo="handleAddTodo"
+          ></add-todo-form>
+        </div>
+      </div>
+
+      <div
+        style="
+          position: absolute;
+          top: 100px;
+          left: 10%;
+          padding: 10px;
+          font-size: 16px;
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        "
+      >
+        <h2 style="margin: 0">作成したリスト:</h2>
+        <span>完了: {{ completedTodosCount }}件</span>
+        <span>未完了: {{ incompleteTodosCount }}件</span>
+      </div>
+
+      <div
+        v-if="todos.length > 0"
+        style="
+          position: absolute;
+          top: 150px;
+          left: 10%;
+          padding: 10px;
+          font-size: 16px;
+        "
+      >
+        <ul style="list-style: none">
+          <li
+            v-for="todo in todos"
+            :key="todo.id"
+            style="margin-bottom: 10px; width: 600px; display: flex; gap: 10px"
+          >
+            <div class="todo-item">
+              <input type="checkbox" @change="toggleTodoCompletion(todo)" />
+              <span :class="{ completed: todo.completed }">
+                {{ todo.title }}
+              </span>
+              <button @click="handleRemoveTodo(todo.id)" class="delete-button">
+                削除
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div
+        v-else
+        style="
+          position: absolute;
+          top: 150px;
+          left: 10%;
+          padding: 10px;
+          font-size: 16px;
+        "
+      >
+        <p>TODOリストは空です</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div>
+  <div
+    style="
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 50%);
+    "
+  >
+    <div style="width: 90%; max-width: 400px">
+      <div>
+        <h1 style="text-align: center">TODOを追加する</h1>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <input
+            type="text"
+            :value="newTodoTitle"
+            @input="updateTitle($event.target.value)"
+            placeholder="件名を入力"
+            style="padding: 5px; font-size: 14px"
+          />
+          <textarea
+            :value="newTodoDescription"
+            @input="updateDescription($event.target.value)"
+            placeholder="新しいTODOを入力"
+            style="padding: 5px; font-size: 14px; resize: none"
+          ></textarea>
+          <button
+            :disabled="!newTodoTitle || !newTodoDescription"
+            style="padding: 10px; font-size: 14px; cursor: pointer"
+            @click="emitAddTodo"
+          >
+            作成
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "baseUrl": ".", // pathsを設定するときはbaseUrlの設定が必要
+    "paths": {
+      "*": ["src/*"],
+      "vue": ["/node_modules/vue/types/index"],
+      "vue-class-component": ["/node_modules/vue-class-component/lib/index"],
+      "vue-property-decorator": [
+        "/node_modules/vue-property-decorator/lib/vue-property-decorator"
+      ]
+    },
+    "types": ["webpack-env"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue"],
+  "exclude": ["node_modules"]
+}
